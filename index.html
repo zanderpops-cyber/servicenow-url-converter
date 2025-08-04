@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ServiceNow URL Converter</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    input, button, textarea { width: 100%; padding: 10px; margin-top: 10px; }
+    .output { margin-top: 20px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>ServiceNow URL Converter</h1>
+  <p>Paste your ServiceNow URL below:</p>
+  <textarea id="inputUrl" rows="3" placeholder="https://ppgsl.service-now.com/csm?id=kb_article&amp;sysparm_article=KB0012345"></textarea>
+  <button onclick="convertURL()">Convert URL</button>
+  <div class="output" id="outputUrl"></div>
+
+  <script>
+    function replaceServiceNowURL(originalUrl) {
+      const oldBase = 'https://ppgsl.service-now.com/csm';
+      const newBase = 'https://help.parentpaygroup.com/csm';
+
+      if (originalUrl.startsWith(oldBase)) {
+        return originalUrl.replace(oldBase, newBase);
+      } else {
+        return "⚠️ URL does not start with the expected base.";
+      }
+    }
+
+    function convertURL() {
+      const input = document.getElementById('inputUrl').value.trim();
+      const output = replaceServiceNowURL(input);
+      document.getElementById('outputUrl').textContent = output;
+    }
+  </script>
+</body>
+</html>
